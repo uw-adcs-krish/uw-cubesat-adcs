@@ -13,7 +13,7 @@ addpath(genpath('../../../../adcs_sim/matlab/')) % add the sim libs
 
 run_test    = 1;
 
-t_end   = 2400;
+t_end   = 500;
 %% Test 1
 if run_test == 1
 
