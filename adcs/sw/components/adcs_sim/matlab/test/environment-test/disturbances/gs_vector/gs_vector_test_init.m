@@ -151,7 +151,7 @@ figure(1), hold on
 X=X.*RE;
 Y=Y.*RE;
 Z=Z.*RE;
-Earth_im = imread('Flat_earth.jpg', 'jpg');
+Earth_im = imread('Flat_earth.JPG', 'jpg');
 surf(X, Y, Z,'CData',flip(Earth_im,1),'FaceColor','texturemap','EdgeColor','none');
 % plot3(sc_pos_eci(:,1),sc_pos_eci(:,2),sc_pos_eci(:,3),'r','LineWidth',2)
 plot3(sc_ecef(:,1),sc_ecef(:,2),sc_ecef(:,3),'r','LineWidth',2)

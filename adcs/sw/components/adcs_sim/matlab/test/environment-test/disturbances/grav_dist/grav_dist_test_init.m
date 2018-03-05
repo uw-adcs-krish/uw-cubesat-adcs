@@ -5,23 +5,20 @@
 % https://planetcalc.com/1758/.
 
 % UW HuskySat-1, ADCS Subsystem
-%  Last Update: T. Reynolds 12.5.17
+% Primary: T. Reynolds 2.23.18
 %% Load paths and stuff needed
 clear variables;
-
-% Load bus stub definitions
-load('bus_definitions.mat')
 
 % Load parameters for both flight software and simulation
 fsw_params = init_fsw_params();
 [sim_params,fsw_params] = init_sim_params(fsw_params);
-fsw_params.bdot     = init_bdot_controller(fsw_params);
 
 %% Test 1
+RE  = 6378.137 * 1e3;
 
 % Overrides
-lat     = 45;
-lon     = -122;
+lat     = 47.129878;
+lon     = -120.6;
 alt     = 500e3;
 % -----
 t_end   = 1;

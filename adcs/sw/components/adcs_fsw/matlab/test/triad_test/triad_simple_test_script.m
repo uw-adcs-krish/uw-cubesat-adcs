@@ -1,8 +1,8 @@
 % run sim init before starting this script
 clc; close all;
 set(0,'defaulttextinterpreter','latex');
-cd /media/sexymathemagician/LaCie1/Git/uw_cubesat_adcs/adcs/sw/components/adcs_fsw/matlab/test/triad_test/
-addpath(genpath(pwd))
+%cd /media/sexymathemagician/LaCie1/Git/uw_cubesat_adcs/adcs/sw/components/adcs_fsw/matlab/test/triad_test/
+%addpath(genpath(pwd))
 
 rng(155);
 
@@ -20,7 +20,8 @@ thet = 25*pi/18;
 
 %quat_init = attitudeToQuat(A);
 
-quat_init = [cos(0.5*thet) sin(0.5*thet)/sqrt(3)* ones(1,3)]';
+quat_init = [cos(0.5*thet) sin(0.5*thet)*ones(1,3)]';
+quat_init = quat_init./norm(quat_init);
 
 mag_vec_init = [4 1 -8]';
 mag_vec_init = mag_vec_init/norm(mag_vec_init);
@@ -49,7 +50,7 @@ M = cross(R1, R2)/norm(cross(R1, R2));
 m = cross(r1, r2)/norm(cross(r1, r2));
 
 A_brute_force = [S M cross(S,M)]*[s m cross(s,m)]';
-display(A_brute_force)
+%display(A_brute_force)
 
 run_time    = '50';
 mdl         = 'triad_simple_test';
@@ -58,5 +59,6 @@ set_param(mdl, 'StopTime', run_time);
 sim(mdl);
 
 display(quat_out.Data(1,:)')
+display(quat_init);
 
 fprintf('note that the sign on the quaternion scalar part is different, we should assume only positive part\n')

@@ -15,6 +15,10 @@ run_test    = 1;
 %% Test 1
 
 if run_test == 1
+clear variables; close all
+% Load parameters for both flight software and simulation
+fsw_params = init_fsw_params();
+[sim_params,fsw_params] = init_sim_params(fsw_params);
 
 % Overrides
 sgp4.tle_filename = 'SWISSCUBE.tle'; % the right TLE
@@ -86,6 +90,10 @@ zlabel('z-direction [km]')
 
 elseif run_test == 2
 %% Test 2
+clear variables; close all
+% Load parameters for both flight software and simulation
+fsw_params = init_fsw_params();
+[sim_params,fsw_params] = init_sim_params(fsw_params);
 
 % Overrides
 sgp4.tle_filename = 'QUAKESAT.tle'; % the right TLE
@@ -151,11 +159,9 @@ zlabel('z-direction [km]')
 %save('workspace-test-QUAKESAT.mat')
 
 elseif run_test == 3
-%% Test 3 - Vallado
-    
-% Load bus stub definitions
-load('bus_definitions.mat')
+%% Test 3
 
+clear variables; close all
 % Load parameters for both flight software and simulation
 fsw_params = init_fsw_params();
 [sim_params,fsw_params] = init_sim_params(fsw_params);
