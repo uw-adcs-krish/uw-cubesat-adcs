@@ -15,6 +15,7 @@ bus.CoM     = [ -0.04952 -0.04492 0.18508 ]'; % [m] CoM location
 bus.inertia = [ 0.033800072 -0.0000488358 -0.00007392968;
                -0.0000488358 0.03456792999 0.00000712402;
                -0.00007392968 0.00000712402 0.00742076536 ];
+bus.solar_panel_unit = [0 0 1];
                       
 % Moments of inertia (cuboid approximation)
 % Ix = (fsw_params.sc.mass/12)*(fsw_params.sc.dy^2+fsw_params.sc.dz^2);    % X-axis inertia
