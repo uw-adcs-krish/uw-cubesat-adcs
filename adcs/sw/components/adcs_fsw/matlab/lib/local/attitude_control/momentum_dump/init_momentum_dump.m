@@ -24,4 +24,4 @@ p_dump.ic.ang_mom_ref       = I*[p_dump.ic.rmp_setpoint_x*fsw_params.convert.RPM
 p_dump.sample_time_s    = 1/5; % sample at 5 Hz
 
 % Momentum unloading controller gains
-p_dump.gain_k     = 5;
+p_dump.gain_k     = 10;
