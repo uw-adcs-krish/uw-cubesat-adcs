@@ -1,14 +1,11 @@
-%% GPS sensor processing unit test init file
+%% gyroscope sensor processing unit test init file
 
-% Test 1: Runs the gyro sensor and sensor processing unit for a disturbance
-% torque.
-
-% Test 1: Runs the GPs sensor and sensor processing unit for 1 day to
-% capture a roll over in the GPS sensor and make sure things look okay. Use
+% Test 1: Runs the gyro sensor and sensor processing unit for 1 day to
+% capture a roll over in the gyro sensor and make sure things look okay. Use
 % accompanying simulink model to check that the TLE matches.
 
 % UW HuskySat-1, ADCS Subsystem
-%  Last Update: S. Rice 3.5.18
+%  Last Update: S.Rice 3/26/18
 %% Load paths
 
 % Start fresh
@@ -30,42 +27,46 @@ fsw_params = init_fsw_params();
 [sim_params,fsw_params] = init_sim_params(fsw_params);
 
 % Overrides
-t_end   = 86400;
+t_end   = 100;
 % -----
 
 % Simulation parameters
 run_time    = num2str(t_end);
-mdl         = 'GPS_processing_test';
+mdl         = 'gyro_processing_test';
 load_system(mdl);
 set_param(mdl, 'StopTime', run_time);
 sim(mdl);
 
 % ----- Analyze Results ----- %
 
-gps_time_fsw    = logsout.getElement('gps_time_fsw').Values.Data;
-gps_time_sensor    = logsout.getElement('gps_time_sensor').Values.Data;
-gps_sensor_time    = logsout.getElement('gps_time_sensor').Values.Time;
-orbit_tle   = logsout.getElement('orbit_tle').Values.Data;
+gyro_br_fsw    = logsout.getElement('gyro_br_fsw').Values.Data;
+gyro_br_sensor    = logsout.getElement('gyro_br_sensor').Values.Data;
+gyro_br_in    = logsout.getElement('gyro_br_in').Values.Data;
+gyro_sensor_time    = logsout.getElement('gyro_br_sensor').Values.Time;
+% orbit_tle   = logsout.getElement('orbit_tle').Values.Data;
+tout = gyro_sensor_time;
 
 % ----- End Analysis ----- %
 
 figure(1)
-subplot(2,2,1)
-plot(tout(11:end),gps_time_fsw(11:end,1),'LineWidth',1)
-title('FSW GPS Seconds','FontSize',15)
-subplot(2,2,2)
-plot(tout(11:end),gps_time_fsw(11:end,2),'LineWidth',1)
-title('FSW GPS Weeks','FontSize',15)
-subplot(2,2,3)
-plot(gps_sensor_time(2:end),gps_time_sensor(2:end,1),'LineWidth',1)
-title('Sensor GPS Seconds','FontSize',15)
-xlabel('Time [s]','FontSize',12)
-subplot(2,2,4)
-plot(gps_sensor_time(2:end),gps_time_sensor(2:end,2),'LineWidth',1)
-title('Sensor GPS Weeks','FontSize',15)
+subplot(3,1,1)
+plot(tout(1:end),gyro_br_in(1:end,1),'LineWidth',1); hold on
+plot(tout(1:end),gyro_br_in(1:end,2),'LineWidth',1);
+plot(tout(1:end),gyro_br_in(1:end,3),'LineWidth',1);
+title('Actual body rates','FontSize',15)
+subplot(3,1,2)
+plot(tout(1:end),gyro_br_sensor(1:end,1),'LineWidth',1); hold on
+plot(tout(1:end),gyro_br_sensor(1:end,2),'LineWidth',1);
+plot(tout(1:end),gyro_br_sensor(1:end,3),'LineWidth',1);
+title('gyro sim output','FontSize',15)
+subplot(3,1,3)
+plot(tout(1:end),gyro_br_fsw(1:end,1),'LineWidth',1); hold on
+plot(tout(1:end),gyro_br_fsw(1:end,2),'LineWidth',1);
+plot(tout(1:end),gyro_br_fsw(1:end,3),'LineWidth',1);
+title('processed gyro output','FontSize',15)
 xlabel('Time [s]','FontSize',12)
 
-%save('workspace-test1-GPS.mat')
+%save('workspace-test1-gyro.mat')
 
 elseif run_test == 2
 %% Test 2
@@ -81,7 +82,7 @@ t_end   = 100;
 
 % Simulation parameters
 run_time    = num2str(t_end);
-mdl         = 'GPS_processing_test';
+mdl         = 'gyro_processing_test';
 load_system(mdl);
 set_param(mdl, 'StopTime', run_time);
 sim(mdl);
