@@ -13,7 +13,7 @@
 % Vallado 4e pp 203 as a seed for the GPS time, which is then converted
 % back and should recover the answer.
 %
-% Test 3: Time conversion test #2. Uses Example 3-7 in Vallado 4e pp 195 to 
+% Test 4: Time conversion test #2. Uses Example 3-7 in Vallado 4e pp 195 to 
 % convert a given date-time in UTC to UT1 and TT time frames. 
 %
 % Primary Test: T. Reynolds 2.10.18
@@ -180,7 +180,7 @@ T_TT    = 0.043674121031;
 % Convert this [y m d h m s] into GPS time and account for leap seconds
 % Note: in 2004 we had TAI-UTC = 32.0. 
 gps_week    = 1270;
-gps_sec     = 492180 + 37.0 - 19.0 - 1.0;
+gps_sec     = 492180 + 37.0 - 19.0;
 
 % override the initial GPS time
 sim_params.environment.sgp4.gps_week_init   = gps_week;

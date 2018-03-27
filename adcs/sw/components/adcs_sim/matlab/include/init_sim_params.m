@@ -13,12 +13,12 @@
 % ----------------------------------------------------------------------- %
 
 % ----- Spacecraft Parameters ----- %
-% Geometry
 sim_params.bus  = fsw_params.bus;
+sim_params.MET  = init_MET(fsw_params);
 % -----
 
-% ----- CAN Signal Emulator ----- %
-sim_params.CAN  = init_CAN();
+% ----- Physical Bus Signal Emulators ----- %
+sim_params.CAN  = init_CAN(sim_params);
 % -----
 
 % ----- Dynamics -----%

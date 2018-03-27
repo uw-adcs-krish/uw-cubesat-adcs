@@ -28,23 +28,22 @@ fsw_params = init_fsw_params();
 
 % Overrides
 t_end   = 86400;
-% -----
 
-% Simulation parameters
+% Simulation parameters & run sim
 run_time    = num2str(t_end);
 mdl         = 'GPS_processing_test';
 load_system(mdl);
 set_param(mdl, 'StopTime', run_time);
 sim(mdl);
 
-% ----- Analyze Results ----- %
+% Analyze Results
 
 gps_time_fsw    = logsout.getElement('gps_time_fsw').Values.Data;
 gps_time_sensor    = logsout.getElement('gps_time_sensor').Values.Data;
 gps_sensor_time    = logsout.getElement('gps_time_sensor').Values.Time;
 orbit_tle   = logsout.getElement('orbit_tle').Values.Data;
 
-% ----- End Analysis ----- %
+% Plot results
 
 figure(1)
 subplot(2,2,1)
@@ -68,25 +67,12 @@ elseif run_test == 2
 %% Test 2
 clear variables; close all; clc
 
-% Load parameters for both flight software and simulation
-fsw_params = init_fsw_params();
-[sim_params,fsw_params] = init_sim_params(fsw_params);
+% Setup
 
-% Overrides
-t_end   = 100;
-% -----
+% Run sim
 
-% Simulation parameters
-run_time    = num2str(t_end);
-mdl         = 'GPS_processing_test';
-load_system(mdl);
-set_param(mdl, 'StopTime', run_time);
-sim(mdl);
+% Analyze + Plot Results
 
-% ----- Analyze + Plot Results ----- %
-
-
-% ----- End Analysis ----- %
 
 %save('workspace-test2-NAME.mat')
 
