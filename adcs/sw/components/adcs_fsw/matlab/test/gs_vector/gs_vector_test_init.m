@@ -43,7 +43,7 @@ sim_params.sensors.gps.start_week   = 2021;
 % ----- End Overrides ---- %
 
 % Run sim
-run_time = '6400';
+run_time = '19000';
 mdl = 'gs_vector_test';
 load_system(mdl);
 set_param(mdl, 'StopTime', run_time);
@@ -68,12 +68,13 @@ mid = floor(length(sc_ecef_time)/2);
 
 % avg_sc2gs  = (2*REKM).*sc2gs_unit(mid,:); 
 
-figure(1), hold on
 [X, Y, Z]=sphere(100);
 X=X.*RE;
 Y=Y.*RE;
 Z=Z.*RE;
 Earth_im = imread('Flat_earth.jpg', 'jpg');
+figure()
+hold on
 surf(X, Y, Z,'CData',flip(Earth_im,1),'FaceColor','texturemap','EdgeColor','none');
 % plot3(sc_pos_eci(:,1),sc_pos_eci(:,2),sc_pos_eci(:,3),'r','LineWidth',2)
 plot3(sc_ecef(:,1),sc_ecef(:,2),sc_ecef(:,3),'r','LineWidth',2)
@@ -82,13 +83,17 @@ plot3(gs_ecef(1,1),gs_ecef(1,2),gs_ecef(1,3),'mx','LineWidth',8)
 xlabel('x-direction [km]')
 ylabel('y-direction [km]')
 zlabel('z-direction [km]')
+axis equal
 %saveas(gcf, strcat(figdir, 'traj_visualization_test1'),'fig')
+hold off
 
-figure(2), hold on
-Earth_im = imread('Flat_earth_cds.jpg', 'jpg');
-imshow(Earth_im);
+% figure()
+% hold on
+% Earth_im = imread('Flat_earth_cds.jpg', 'jpg');
+% imshow(Earth_im);
+% hold off
 
-figure(3)
+figure()
 plot(sc_above_gs_time,sc_above_gs)
 xlabel('Time [s]')
 ylabel('Spacecraft in gs')
@@ -121,7 +126,7 @@ sim_params.sensors.gps.start_week   = 2021;
 % ----- End Overrides ---- %
 
 % Run sim
-run_time = '6400';
+run_time = '19000';
 mdl = 'gs_vector_test';
 load_system(mdl);
 set_param(mdl, 'StopTime', run_time);
@@ -146,12 +151,14 @@ mid = floor(length(sc_ecef_time)/2);
 
 % avg_sc2gs  = (2*REKM).*sc2gs_unit(mid,:); 
 
-figure(1), hold on
+
 [X, Y, Z]=sphere(100);
 X=X.*RE;
 Y=Y.*RE;
 Z=Z.*RE;
 Earth_im = imread('Flat_earth.JPG', 'jpg');
+figure() 
+hold on
 surf(X, Y, Z,'CData',flip(Earth_im,1),'FaceColor','texturemap','EdgeColor','none');
 % plot3(sc_pos_eci(:,1),sc_pos_eci(:,2),sc_pos_eci(:,3),'r','LineWidth',2)
 plot3(sc_ecef(:,1),sc_ecef(:,2),sc_ecef(:,3),'r','LineWidth',2)
@@ -160,13 +167,17 @@ plot3(gs_ecef(1,1),gs_ecef(1,2),gs_ecef(1,3),'mx','LineWidth',8)
 xlabel('x-direction [km]')
 ylabel('y-direction [km]')
 zlabel('z-direction [km]')
+axis equal
 %saveas(gcf, strcat(figdir, 'traj_visualization_test1'),'fig')
+hold off
 
-figure(2), hold on
-Earth_im = imread('Flat_earth_cds.jpg', 'jpg');
-imshow(Earth_im);
+% figure()
+% hold on
+% Earth_im = imread('Flat_earth_cds.jpg', 'jpg');
+% imshow(Earth_im);
+% hold off
 
-figure(3)
+figure()
 plot(sc_above_gs_time,sc_above_gs)
 xlabel('Time [s]')
 ylabel('Spacecraft in gs')

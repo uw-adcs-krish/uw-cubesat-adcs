@@ -9,7 +9,7 @@ function gs_prediction = init_gs_prediction( env_estimation )
 % ----------------------------------------------------------------------- %
 
 % ----- Earth parameters ----- %
-gs_prediction.fov_ang  = 30; % [degrees]
+gs_prediction.fov_ang  = 30; % [degrees] must be in (-90,90)
 % ---------------------------- %
 
 % Sample time
