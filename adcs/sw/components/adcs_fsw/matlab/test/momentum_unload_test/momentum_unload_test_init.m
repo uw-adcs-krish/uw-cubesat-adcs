@@ -13,10 +13,9 @@ addpath(genpath('../../../../adcs_sim/matlab/')) % add the sim libs
 
 run_test    = 1;
 
-t_end   = 2400;
+t_end   = 5400;
 %% Test 1
 if run_test == 1
-
 % Load bus stub definitions
 load('bus_definitions.mat')
 
@@ -25,6 +24,9 @@ fsw_params = init_fsw_params();
 [sim_params,fsw_params] = init_sim_params(fsw_params);
 
 % Overrides
+% fsw_params.actuators.ic.RW_RPM = 2000*ones(3,1);
+% fsw_params.actuators.ic.RW_omega_radps  = fsw_params.convert.RPM_2_RADPS.*2000*ones(3,1);
+
 %sim_params.environment.avg_b = [1.59212e-5 -6.1454e-6 4.0276e-5]; % T
 %sim_params.dynamics.ic.rate_init = [0.1; 0.1; 0.1];
 % -----
