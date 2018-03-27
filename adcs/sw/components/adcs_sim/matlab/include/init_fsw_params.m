@@ -36,7 +36,7 @@ fsw_params.env_estimation   = init_env_estimation(fsw_params);
 % ----------------------- %
 
 % ----- Sensors ----- %
-fsw_params.sensors              = init_sensors();
+fsw_params.sensors              = init_sensors(fsw_params);
 fsw_params.sensor_processing    = init_sensor_processing(fsw_params);
 % ------------------- %
 

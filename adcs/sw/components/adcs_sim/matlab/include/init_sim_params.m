@@ -27,7 +27,7 @@ sim_params.dynamics = init_dynamics(fsw_params);
 
 % ----- Sensors ----- %
 % Magnetometer
-sim_params.sensors  = init_sensors();
+sim_params.sensors  = init_sensors(fsw_params);
 % -----
 
 % ----- Actuators ----- %

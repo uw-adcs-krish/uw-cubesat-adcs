@@ -1,4 +1,4 @@
-function sensors = init_sensors( )
+function sensors = init_sensors( fsw_params )
 % ----------------------------------------------------------------------- %
 % UW HuskySat-1, ADCS Team
 %
@@ -9,7 +9,7 @@ function sensors = init_sensors( )
 
 % Header
 sensors.gps     = init_gps();
-sensors.gyro    = init_gyroscope();
+sensors.gyro    = init_gyroscope(fsw_params);
 sensors.magnetometer    = init_magnetometer();
 sensors.photodiodes     = init_photodiodes();
 sensors.sun_sensor      = init_sun_sensor();
