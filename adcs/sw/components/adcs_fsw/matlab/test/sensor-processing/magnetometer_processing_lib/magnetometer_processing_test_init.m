@@ -7,7 +7,7 @@
 %% Load paths
 
 % Start fresh
-clear variables; close all; clc
+% clear variables; close all; clc
 set(0,'defaulttextinterpreter','latex');
 addpath(genpath('../../../../matlab/')) % adds the fsw libs
 addpath(genpath('../../../../../adcs_sim/matlab/')) % add the sim libs
@@ -18,8 +18,8 @@ load('bus_definitions.mat')
 %% Test 1
 
 % Load parameters for both flight software and simulation
-fsw_params = init_fsw_params();
-[sim_params,fsw_params] = init_sim_params(fsw_params);
+% fsw_params = init_fsw_params();
+% [sim_params,fsw_params] = init_sim_params(fsw_params);
 
 % Overrides
 t_end   = 100;

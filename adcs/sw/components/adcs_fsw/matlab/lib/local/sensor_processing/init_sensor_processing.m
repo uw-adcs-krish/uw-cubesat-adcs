@@ -4,7 +4,7 @@ function sensor_processing = init_sensor_processing( fsw_params )
 %
 % Initializes all sensor parameters to be used in FSW.
 %
-%   Last Edited: T. Reynolds 2.3.18
+% T. Reynolds -- 2.28.18
 % ----------------------------------------------------------------------- %
 
 % ----- Magnetometer ----- %
@@ -35,15 +35,7 @@ sensor_processing.sunsensor.rate            = (1/10); % Hz - sensor read rate
 % ---------------------- %
 
 % ----- GPS Sensor ----- %
-sensor_processing.gps.ic.time = [fsw_params.environment.sgp4.gps_sec_init ...
-                                 fsw_params.environment.sgp4.gps_week_init]';
-[sensor_processing.gps.ic.pos,sensor_processing.gps.ic.vel]    = TLE2ECI(fsw_params.environment.sgp4.orbit_tle);
-sensor_processing.gps.ic.all    = [sensor_processing.gps.ic.pos; ...
-                                    sensor_processing.gps.ic.vel; ...
-                                    sensor_processing.gps.ic.time;
-                                    1 ];
-sensor_processing.gps.sample_time_s     = 1;
-sensor_processing.gps.rate  = 1; % Hz - sensor read rate
+sensor_processing.gps   = init_gps_processing(fsw_params);
 % ---------------------- %
 
 

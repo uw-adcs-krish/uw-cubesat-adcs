@@ -27,6 +27,7 @@ fsw_params.convert.M2KM         = 1e-3;  % convert m to km
 fsw_params.convert.NT2T         = 1e-9;  % convert nano-Tesla to Tesla
 fsw_params.convert.RPM_2_RADPS  = (pi/30); % convert RPM to rad/s
 fsw_params.convert.RADPS_2_RPM  = (30/pi); % convert RPM to rad/s
+fsw_params.constants    = init_fsw_constants();
 % --------------------- %
 
 % ----- Environment ----- %

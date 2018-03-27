@@ -7,7 +7,7 @@ gps.sample_time_s = 1;
 gps.num_sats    = 5;
 gps.max_sec     = 604800;
 gps.period      = 5400; % [s] roughly one orbit
-gps.pct_on      = 1; % turn it on for up to 1% of one orbit
-gps.delay_s     = 0; % takes 15s to get a lock
+gps.pct_on      = 1;    % turn it on for 1% of each orbit
+gps.delay_s     = 15;   % delay to get a lock
 
 end
