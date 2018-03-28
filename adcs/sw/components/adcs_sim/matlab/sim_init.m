@@ -26,7 +26,7 @@ fsw_params = init_fsw_params();
 fsw_params.bdot     = init_bdot_controller(fsw_params);
 
 % Load sim and set params
-run_time    = 360;
+run_time    = 600;
 mdl         = 'adcs_sim_main';
 load_system(mdl);
 set_param(mdl,'StopTime', num2str(run_time));
