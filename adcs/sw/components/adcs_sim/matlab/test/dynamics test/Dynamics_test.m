@@ -20,24 +20,15 @@
 
 % Original Author: R. Wallace
 
-
-
-
 %Last test: 
-%    R. Wallace,  2.20.2018
+%    E. Hansen,  3.28.2018
+%-------------------------------------------------------------------------%
 
 %Assumes sim_init has been run
 clc
 
-test = 5;
+test = 4;
 run_time = '1000';
-
-
-
-
-
-
-
 
 % ------ INITIAL CONDITIONS ------ %
 
@@ -97,6 +88,9 @@ end
 %overriding sim_init initial conditions
 dynamics = struct('ic',struct('quat_init',quaternion_init,'rate_init',angular_rate_init_radps));
 sim_params = struct('CAN',sim_params.CAN,'dynamics',dynamics,'sensors',sim_params.sensors,'actuators',sim_params.actuators,'environment',sim_params.environment,'bus',sim_params.bus);
+fsw_params.control.cmd_processing.ic.momentum = fsw_params.control.cmd_processing.ic.momentum.*fsw_params.convert.RPM_2_RADPS;
+%the above momentum override is used because the updated command processing hasn't
+%been pushed to develop yet
 
 %running simulation
 model = 'Dynamics_test_sim';
