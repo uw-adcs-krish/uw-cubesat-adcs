@@ -7,7 +7,7 @@ end
 function setup(block)
   %
   % 1 input port, no output ports
-  block.NumInputPorts  = 1;
+  block.NumInputPorts  = 4;
   block.NumOutputPorts = 0;
   %
   % Setup functional port properties
@@ -15,6 +15,11 @@ function setup(block)
   %
   % The input is a quaternion and the spacecraft dimensions
   block.InputPort(1).Dimensions = 4;
+  block.InputPort(2).Dimensions = 3;
+  block.InputPort(3).Dimensions = 3;
+  block.InputPort(4).Dimensions = 3;
+
+
   %
   % Register block methods
   block.RegBlockMethod('Start',   @Start);
@@ -57,5 +62,6 @@ function Output(block)
     end
     vis.setQuat(block.InputPort(1).Data(1), block.InputPort(1).Data(2),...
         block.InputPort(1).Data(3), block.InputPort(1).Data(4));
+    vis.setVecs(block.InputPort(2).Data,block.InputPort(3).Data,block.InputPort(4).Data)
   end
 end
