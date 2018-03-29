@@ -91,6 +91,7 @@ sim_params = struct('CAN',sim_params.CAN,'dynamics',dynamics,'sensors',sim_param
 fsw_params.control.cmd_processing.ic.momentum = fsw_params.control.cmd_processing.ic.momentum.*fsw_params.convert.RPM_2_RADPS;
 %the above momentum override is used because the updated command processing hasn't
 %been pushed to develop yet
+sim_params.environment.avg_b = [1.59212e-5 -6.1454e-6 4.0276e-5]; % T
 
 %running simulation
 model = 'Dynamics_test_sim';
