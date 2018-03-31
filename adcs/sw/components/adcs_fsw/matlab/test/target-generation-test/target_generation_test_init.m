@@ -167,8 +167,13 @@ sim(mdl);
 
 quat_cmd    = logsout.getElement('quat_cmd').Values.Data;
 omega_cmd_radps    = logsout.getElement('omega_cmd_radps').Values.Data;
+flag        = logsout.getElement('flag').Values.Data;
 
-
+if flag(end) == -1
+    disp('--- Test successful ---')
+else
+    disp('--- Test unsuccessful ---')
+end
 
 % ----- End Analysis ----- %
 
