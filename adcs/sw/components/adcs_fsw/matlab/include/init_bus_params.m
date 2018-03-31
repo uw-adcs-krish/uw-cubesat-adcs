@@ -30,5 +30,6 @@ bus.omega_radps_thresh.min = 0.00436; % 0.25 deg/s
 bus.bstar               = 3.2923e-5;        % drag term for SGP4 from SWISSCUBE
 bus.sync_pulse          = 2;                % [s] minor sync pulse for duty cycling PPT
 bus.dut1                = 0;                % SGP4 wants a UTC time
+bus.vel_point_tol       = 12;               % degrees
 end
 

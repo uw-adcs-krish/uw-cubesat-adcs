@@ -9,7 +9,8 @@ function [ cmd_processing ] = init_cmd_processing(fsw_params)
 % Initial conditions
 cmd_processing.ic.momentum = ...
                    fsw_params.actuators.reaction_wheel.inertia_matrix * ...
-                        fsw_params.actuators.ic.RW_RPM;
+                        (fsw_params.actuators.ic.RW_RPM * ...
+                            fsw_params.constants.convert.RPM_2_radps);
 
 % Digital value range
 cmd_processing.digital_value    = 127;

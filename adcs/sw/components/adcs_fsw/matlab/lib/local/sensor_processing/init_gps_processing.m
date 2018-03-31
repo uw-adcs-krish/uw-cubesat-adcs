@@ -10,21 +10,26 @@ function [ gps ] = init_gps_processing( fsw_params )
 % Pull constants
 KM2M    = fsw_params.constants.convert.KM2M;
 dut1    = fsw_params.constants.time.dut1;
+cent2JD = fsw_params.constants.time.cent2JD;
+day2sec = fsw_params.constants.time.day2sec;
 
 % Sensor sample time
-gps.sample_time_s     = 1;
+gps.sample_time_s     = fsw_params.sample_time_s;
 
 % Initialize positions in TEME, ECI and ECEF frames
-gps.ic.time = [fsw_params.environment.sgp4.gps_sec_init ...
-                    fsw_params.environment.sgp4.gps_week_init]';
+gps.ic.time = fsw_params.environment.sgp4.ic.gps_time;
 [gps.ic.pos_teme_km,gps.ic.vel_teme_kmps] = ...
                             TLE2ECI(fsw_params.environment.sgp4.orbit_tle);
                         
 gps.ic.pos_teme_m   = KM2M*gps.ic.pos_teme_km;
 gps.ic.vel_teme_mps = KM2M*gps.ic.vel_teme_kmps;
 
-% Get rotation matrices
+% get time values
 [~,~,~,~,T_ut1_J2000,T_TT_J2000] = time_conversion(gps.ic.time,dut1);
+gps.JD_J2000_TT     = T_TT_J2000 * cent2JD; % save for epoch initialization
+gps.JD_J2000_TT_s   = gps.JD_J2000_TT * day2sec;
+
+% get rotation matrices
 [ecef_2_eci, ppef_2_veci, ~, teme_2_eci]  = ...
            coordinate_rotations(T_ut1_J2000, T_TT_J2000);
 eci_2_ecef          = ecef_2_eci';  
