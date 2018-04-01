@@ -17,11 +17,12 @@ test = 1;
 % quaternion
 % 2 - 0 torque, step dipole from max dipole moment in first coordinate to 0
 % -> should result in 'fast' changes to the body rates when the dipole is 
-% active, and then should maintain the body rate of when the
+% active, and then should maintain the body rate & quaternion of when the
 % dipole was turned off
 % 3 - 0 dipole, step torque to max torque in first coordinate -> should 
 % result in 'fast' changes to the body rates when the dipole is active, 
-% and then should maintain the body rate of when the RW are not moving
+% and then should maintain the body rate & quaternion of when the RW are 
+% not moving
 % 4 - pulse torque, 0 dipole -> should result in no changes from test1
 % until pulse, then the result should be similar to test 3
 % 5 - 0 torque, pulse dipole -> should result in no changes from test1
