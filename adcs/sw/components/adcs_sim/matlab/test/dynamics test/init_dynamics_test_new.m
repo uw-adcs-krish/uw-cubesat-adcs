@@ -10,7 +10,7 @@ clear variables; close all; clc;
 set(0,'defaulttextinterpreter','latex');
 
 %% Tests
-test = 7;
+test = 1;
 %Test numbers and associated valid results:
 %**The norm of the position should always be around 7*10^(3)km**
 % 1 - all 0 inputs -> should result in no changes to body rates or
@@ -26,10 +26,12 @@ test = 7;
 % until pulse, then the result should be similar to test 3
 % 5 - 0 torque, pulse dipole -> should result in no changes from test1
 % until pulse, then the result should be similr to test 2
-% 6 - constant nonzero torque, 0 dipole -> should result in steady
-% increase in body rates as time goes on (bc of how RW torque acts in the
-% body rates DE
-% 7 - 0 torque, constant nonzero dipole -> should result in 
+% 6 - constant nonzero torque, 0 dipole -> should result in an
+% increase in body rates as time goes on (because of how the torque is
+% added in)
+% 7 - 0 torque, constant nonzero dipole -> since the dipole gets crossed
+% with the magnetic field vector, the input torque will oscillate, so the
+% output rates should too 
 
 % Load bus stub definitions
 load('bus_definitions.mat')
@@ -78,7 +80,7 @@ end
 
 % Simulation parameters
 run_time    = num2str(t_end);
-mdl         = 'dynamics_test2_sim';
+mdl         = 'Dynamics_test2_sim';
 load_system(mdl);
 set_param(mdl, 'StopTime', run_time);
 sim(mdl);
