@@ -30,10 +30,3 @@ run_time    = 360;
 mdl         = 'adcs_sim_main';
 load_system(mdl);
 set_param(mdl,'StopTime', num2str(run_time));
-
-% Simulation
-%sim(mdl); % might be best to just run the model from simulink itself,
-%rather than here.
-
-%plot_results % Again, best to use the signal analyzer for any
-%visualization needed.
