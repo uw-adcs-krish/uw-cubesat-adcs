@@ -20,7 +20,7 @@
 %
 % Assumes sim_init.m has been run to set the paths.
 % ----------------------------------------------------------------------- %
-run_test = 1;
+run_test = 3;
 
 %% Begin Tests
 

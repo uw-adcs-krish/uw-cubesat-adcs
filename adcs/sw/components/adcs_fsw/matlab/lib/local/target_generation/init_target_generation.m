@@ -13,6 +13,7 @@ target_gen.sample_time_s    = fsw_params.sample_time_s;
 target_gen.ic.sc_mode   = 1;
 target_gen.ic.quat      = [ 1; 0; 0; 0 ];
 target_gen.ic.omega     = [ 0; 0; 0 ];
+target_gen.ic.flag      = 0;
 
 end
 
